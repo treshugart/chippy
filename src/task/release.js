@@ -1,7 +1,7 @@
 'use strict';
 
 var cmd = require('commander');
-var pkg = require('../../package.json');
+var pkg = require('../lib/package');
 var replace = require('../lib/replace');
 var semver = require('semver');
 var sh = require('shelljs');
@@ -20,7 +20,6 @@ module.exports = function () {
 
   sh.exec('npm run lint');
   sh.exec('npm run test');
-  replace('src/version.js', currentVersion, nextVersion);
   replace('bower.json', currentVersion, nextVersion);
   replace('package.json', currentVersion, nextVersion);
   sh.exec('npm run dist');

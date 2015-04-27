@@ -8,7 +8,7 @@ galvatron.transformer.post('babel', {
 });
 
 module.exports = function () {
-  var bundle = galvatron.bundle('src/skate.js');
+  var bundle = galvatron.bundle('src/index.js');
   return gulp
     .src(bundle.all)
     .pipe(bundle.streamOne())

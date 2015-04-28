@@ -1,5 +1,6 @@
 'use strict';
 
+var del = require('del');
 var galvatron = require('galvatron')();
 var gulp = require('gulp');
 var mac = require('mac');

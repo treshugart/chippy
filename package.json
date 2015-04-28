@@ -34,7 +34,7 @@
     "karma-opera-launcher": "^0.1.0",
     "karma-safari-launcher": "^0.1.1",
     "karma-sinon-chai": "^0.3.0",
-    "mac": "^0.2.1",
+    "mac": "0.3.0",
     "metalsmith": "^1.0.1",
     "metalsmith-markdown": "^0.2.1",
     "metalsmith-templates": "^0.6.0",

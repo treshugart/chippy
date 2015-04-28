@@ -5,30 +5,28 @@ var mac = require('mac');
 var pkg = require('../../lib/package');
 var sh = require('shelljs');
 
-module.exports = function () {
-  return mac.series(
-    docs,
-    function () {
-      // Clone docs site repository.
-      sh.rm('-rf', '.tmp');
-      sh.mkdir('-p', '.tmp');
-      sh.cd('.tmp');
-      sh.exec('git clone ' + pkg.repository.url + '.github.io .');
+module.exports = mac.series(
+  docs,
+  function () {
+    // Clone docs site repository.
+    sh.rm('-rf', '.tmp');
+    sh.mkdir('-p', '.tmp');
+    sh.cd('.tmp');
+    sh.exec('git clone ' + pkg.repository.url + '.github.io .');
 
-      // Remove everything but the .git directory.
-      sh.exec('ls -a1 | grep -v "^\\.git$" | grep -v "^\\.$" | grep -v "^\\.\\.$" | xargs rm -rf');
+    // Remove everything but the .git directory.
+    sh.exec('ls -a1 | grep -v "^\\.git$" | grep -v "^\\.$" | grep -v "^\\.\\.$" | xargs rm -rf');
 
-      // Copy the docs into the empty working copy.
-      sh.cp('-rf', '../docs/build/*', './');
+    // Copy the docs into the empty working copy.
+    sh.cp('-rf', '../docs/build/*', './');
 
-      // Commit.
-      sh.exec('git add .');
-      sh.exec('git commit -am "Update documentation."');
-      sh.exec('git push');
+    // Commit.
+    sh.exec('git add .');
+    sh.exec('git commit -am "Update documentation."');
+    sh.exec('git push');
 
-      // Cleanup.
-      sh.cd('..');
-      sh.rm('-rf', '.tmp');
-    }
-  );
-};
+    // Cleanup.
+    sh.cd('..');
+    sh.rm('-rf', '.tmp');
+  }
+);

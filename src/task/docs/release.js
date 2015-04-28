@@ -1,7 +1,7 @@
 'use strict';
 
 var docs = require('../docs');
-var mac = require('../lib/mac');
+var mac = require('../../lib/mac');
 var pkg = require('../../lib/package');
 var sh = require('shelljs');
 

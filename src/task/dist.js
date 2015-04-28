@@ -6,7 +6,7 @@ var galvatron = require('galvatron')();
 var gulp = require('gulp');
 var gulpRename = require('gulp-rename');
 var gulpUglify = require('gulp-uglify');
-var mac = require('mac');
+var mac = require('../lib/mac');
 var pkg = require('../lib/package');
 
 galvatron.transformer

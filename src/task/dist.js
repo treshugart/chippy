@@ -17,8 +17,9 @@ module.exports = function () {
     .src(bundle.files)
     .pipe(bundle.watchIf(commander.watch))
     .pipe(bundle.stream())
+    .pipe(gulpRename( { basename: pkg.name }))
     .pipe(gulp.dest('dist'))
     .pipe(gulpUglify())
-    .pipe(gulpRename( { basename: pkg.name + '.min' }))
+    .pipe(gulpRename( { suffix: '.min' }))
     .pipe(gulp.dest('dist'));
 };

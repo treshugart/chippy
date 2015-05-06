@@ -4,6 +4,7 @@ var commander = require('../lib/commander');
 var galvatron = require('galvatron');
 var gulp = require('gulp');
 var karma = require('karma').server;
+var mac = require('../lib/mac');
 
 commander
   .option('-b, --browsers [Chrome,Firefox]', 'The browsers to run the tests in.')
@@ -41,16 +42,13 @@ function run () {
   });
 }
 
-module.exports = function () {
-  var bundle = galvatron.bundle('test/unit.js');
-
-  if (commander.watch) {
-    run();
-  }
-
-  gulp.src(bundle.files)
-    .pipe(bundle.watchIf(commander.watch))
-    .pipe(bundle.stream())
-    .pipe(gulp.dest('.tmp'))
-    .on('finish', run);
-};
+module.exports = mac.series(
+  function () {
+    var bundle = galvatron.bundle('test/unit.js');
+    return gulp.src(bundle.files)
+      .pipe(bundle.watchIf(commander.watch))
+      .pipe(bundle.stream())
+      .pipe(gulp.dest('.tmp'));
+  },
+  run
+);

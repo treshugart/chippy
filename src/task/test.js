@@ -1,7 +1,7 @@
 'use strict';
 
 var commander = require('../lib/commander');
-var galvatron = require('galvatron');
+var galvatron = require('galvatron')();
 var gulp = require('gulp');
 var karma = require('karma').server;
 var mac = require('../lib/mac');

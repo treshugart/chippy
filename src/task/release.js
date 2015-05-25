@@ -18,12 +18,12 @@ module.exports = function () {
     cmd.type || 'patch'
   );
 
-  sh.exec('npm run lint');
-  sh.exec('npm run test');
+  sh.exec('gulp lint');
+  sh.exec('gulp test');
   replace('bower.json', currentVersion, nextVersion);
   replace('package.json', currentVersion, nextVersion);
-  sh.exec('npm run dist');
-  sh.exec('npm run lib');
+  sh.exec('gulp dist');
+  sh.exec('gulp lib');
   sh.exec('git commit -am "' + currentVersion + ' -> ' + nextVersion + '"');
   sh.exec('git tag -a ' + nextVersion + ' -m ' + nextVersion);
   sh.exec('git push');

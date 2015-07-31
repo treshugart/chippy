@@ -2,7 +2,7 @@
 
 var cmd = require('../lib/commander');
 var del = require('del');
-var galv = require('galvatron');
+var galvatron = require('galvatron');
 var gulp = require('gulp');
 var gulpLess = require('gulp-less');
 var gulpWebserver = require('gulp-webserver');
@@ -22,7 +22,10 @@ module.exports = mac.series(
       ms.use(metalsmithWatch());
     }
 
-    ms.build(done);
+    ms.build(function (err) {
+      if (err) { throw err; }
+      done();
+    });
   },
 
   function (done) {
@@ -30,7 +33,7 @@ module.exports = mac.series(
   },
 
   function () {
-    var bundle = galv.bundle('docs/src/styles/index.less');
+    var bundle = galvatron().bundle('docs/src/styles/index.less');
     return gulp
       .src(bundle.files)
       .pipe(bundle.watchIf(cmd.watch))
@@ -39,6 +42,8 @@ module.exports = mac.series(
   },
 
   function () {
+    var galv = galvatron();
+    galv.transformer.post('babel').post('globalize');
     var bundle = galv.bundle('docs/src/scripts/index.js');
     return gulp
       .src(bundle.files)

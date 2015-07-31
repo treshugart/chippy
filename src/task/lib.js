@@ -1,5 +1,6 @@
 'use strict';
 
+var commander = require('../lib/commander');
 var del = require('del');
 var galvatron = require('galvatron')();
 var gulp = require('gulp');
@@ -29,8 +30,9 @@ module.exports = mac.series(
 
       gulp
         .src(file)
+        .pipe(bundle.watchIf(commander.watch))
         .pipe(bundle.streamOne())
         .pipe(gulp.dest(destDir));
     });
   }
-)
+);

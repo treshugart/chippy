@@ -14,8 +14,8 @@ commander
   .parse(process.argv);
 
 galvatron.transformer
-  .post('babel')
-  .post('globalize');
+  .add('babel')
+  .add('globalize');
 
 var browsers = commander.browsers || 'Firefox';
 var clientArgs = [];

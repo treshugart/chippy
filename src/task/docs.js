@@ -3,6 +3,7 @@
 var cmd = require('../lib/commander');
 var del = require('del');
 var galvatron = require('galvatron');
+var galvatronLessMatcher = require('galvatron/src/matcher/less');
 var gulp = require('gulp');
 var gulpLess = require('gulp-less');
 var gulpWebserver = require('gulp-webserver');
@@ -33,7 +34,8 @@ module.exports = mac.series(
   },
 
   function () {
-    var bundle = galvatron().bundle('docs/src/styles/index.less');
+    var galv = galvatron({ matcher: galvatronLessMatcher });
+    var bundle = galv.bundle('docs/src/styles/index.less');
     return gulp
       .src(bundle.files)
       .pipe(bundle.watchIf(cmd.watch))
@@ -43,7 +45,8 @@ module.exports = mac.series(
 
   function () {
     var galv = galvatron();
-    galv.transformer.post('babel').post('globalize');
+    galv.transformer.add('babel').add('globalize');
+    galv.reporter.use('progress');
     var bundle = galv.bundle('docs/src/scripts/index.js');
     return gulp
       .src(bundle.files)

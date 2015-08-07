@@ -10,8 +10,8 @@ var mac = require('../lib/mac');
 var pkg = require('../lib/package');
 
 galvatron.transformer
-  .post('babel')
-  .post('globalize');
+  .add('babel')
+  .add('globalize');
 
 module.exports = mac.series(
   function (done) {

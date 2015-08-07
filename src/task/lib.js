@@ -11,7 +11,7 @@ var cwd = process.cwd();
 var src = path.join(cwd, 'src');
 var lib = path.join(cwd, 'lib');
 
-galvatron.transformer.post('babel', {
+galvatron.transformer.add('babel', {
   modules: 'umd'
 });
 

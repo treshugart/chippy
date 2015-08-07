@@ -1,6 +1,6 @@
 {
   "name": "chippy",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Module that encapsulates most of the abstract logic and tasks that a JavaScript project / app will need.",
   "main": "index.js",
   "scripts": {

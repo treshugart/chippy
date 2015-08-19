@@ -40,6 +40,7 @@ function npmInstallDev (pkg) {
 }
 
 cpDefaultFile('.chippyrc');
+cpDefaultFile('.gitignore');
 cpDefaultFile('.jshintrc');
 cpDefaultFile('.jscsrc');
 cpDefaultFile('gulpfile.js');

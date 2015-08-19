@@ -1,31 +1,33 @@
+'use strict';
+
 var commander = require('../lib/commander');
+var config = require('../lib/config');
 var del = require('del');
-var galvatron = require('galvatron')();
+var galvatron = require('../lib/galvatron')('dist');
 var gulp = require('gulp');
 var gulpRename = require('gulp-rename');
 var gulpUglify = require('gulp-uglify');
 var mac = require('../lib/mac');
-var pkg = require('../lib/package');
-
-galvatron.transformer
-  .post('babel')
-  .post('globalize');
 
 module.exports = mac.series(
   function (done) {
-    del('dist', done);
+    del(config('dist.destination'), done);
   },
 
   function () {
-    var bundle = galvatron.bundle('src/index.js');
+    var bundle = galvatron.bundle(config('dist.source'));
     return gulp
       .src(bundle.files)
       .pipe(bundle.watchIf(commander.watch))
       .pipe(bundle.stream())
-      .pipe(gulpRename( { basename: pkg.name }))
-      .pipe(gulp.dest('dist'))
+      .pipe(gulpRename({
+        basename: config('dist.name')
+      }))
+      .pipe(gulp.dest(config('dist.destination')))
       .pipe(gulpUglify())
-      .pipe(gulpRename( { suffix: '.min' }))
-      .pipe(gulp.dest('dist'));
+      .pipe(gulpRename({
+        suffix: config('dist.minSuffix')
+      }))
+      .pipe(gulp.dest(config('dist.destination')));
   }
 );

@@ -1,6 +1,9 @@
+'use strict';
+
 var cmd = require('../lib/commander');
+var config = require('../lib/config');
 var del = require('del');
-var galvatron = require('galvatron');
+var galvatron = require('../lib/galvatron')('docs');
 var gulp = require('gulp');
 var gulpLess = require('gulp-less');
 var gulpWebserver = require('gulp-webserver');
@@ -9,45 +12,50 @@ var metalsmith = require('metalsmith');
 var metalsmithMarkdown = require('metalsmith-markdown');
 var metalsmithTemplates = require('metalsmith-templates');
 var metalsmithWatch = require('metalsmith-watch');
+var path = require('path');
 
 module.exports = mac.series(
   function (done) {
-    var ms = metalsmith('docs')
-      .use(metalsmithMarkdown({ sanitize: false }))
-      .use(metalsmithTemplates('handlebars'));
+    var ms = metalsmith(config('docs.source'))
+      .destination(config('docs.destination'))
+      .use(metalsmithMarkdown({
+        sanitize: false
+      }))
+      .use(metalsmithTemplates(config('docs.templateEngine')));
 
     if (cmd.watch) {
       ms.use(metalsmithWatch());
     }
 
     ms.build(function (err) {
-      if (err) { throw err; }
+      if (err) {
+        throw err;
+      }
       done();
     });
   },
 
   function (done) {
-    del('docs/build/styles', done);
+    del(config('docs.destination'), done);
   },
 
   function () {
-    var bundle = galvatron().bundle('docs/src/styles/index.less');
+    var bundle = galvatron.bundle(config('docs.main.less'));
     return gulp
       .src(bundle.files)
       .pipe(bundle.watchIf(cmd.watch))
       .pipe(gulpLess())
-      .pipe(gulp.dest('docs/build/styles'));
+      .pipe(gulp.dest(path.dirname(config('docs.main.less'))));
   },
 
   function () {
     var galv = galvatron();
-    galv.transformer.post('babel').post('globalize');
-    var bundle = galv.bundle('docs/src/scripts/index.js');
+    var bundle = galv.bundle(config('docs.main.js'));
     return gulp
       .src(bundle.files)
       .pipe(bundle.watchIf(cmd.watch))
       .pipe(bundle.stream())
-      .pipe(gulp.dest('docs/build/scripts'));
+      .pipe(gulp.dest(path.dirname(config('docs.main.js'))));
   },
 
   function () {
@@ -55,12 +63,12 @@ module.exports = mac.series(
       return;
     }
 
-    return gulp.src('docs/build')
-        .pipe(gulpWebserver({
-            host: cmd.host || '0.0.0.0',
-            livereload: true,
-            open: '.',
-            port: cmd.port || 8000
-        }));
+    return gulp.src(config('docs.destination'))
+      .pipe(gulpWebserver({
+        host: config('docs.server.host'),
+        livereload: config('docs.server.livereload'),
+        open: config('docs.server.open'),
+        port: config('docs.server.port')
+      }));
   }
 );

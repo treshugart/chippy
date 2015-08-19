@@ -1,5 +1,7 @@
+'use strict';
+
 var cmd = require('commander');
-var pkg = require('../lib/package');
+var config = require('../lib/config');
 var replace = require('../lib/replace');
 var semver = require('semver');
 var sh = require('shelljs');
@@ -10,7 +12,7 @@ cmd
   .parse(process.argv);
 
 module.exports = function () {
-  var currentVersion = pkg.version;
+  var currentVersion = config('version');
   var nextVersion = cmd.semver || semver.inc(
     currentVersion,
     cmd.type || 'patch'

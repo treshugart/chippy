@@ -49,12 +49,13 @@ module.exports = cascadeValueFromObjects(configJson, packageChippyJson, packageJ
     }
   },
   docs: {
-    destination: 'docs/build',
-    main: {
-      html: 'docs/src/index.html',
-      js: 'docs/src/scripts/index.js',
-      less: 'docs/src/styles/index.less'
-    },
+    basepath: 'docs',
+    destination: 'build',
+    mainHtmlSource: 'index.html',
+    mainLessDestination: 'styles',
+    mainLessSource: 'index.less',
+    mainJsDestination: 'scripts',
+    mainJsSource: 'index.js',
     releaseMessage: 'Release documentation.',
     repo: files('name') + '.github.io',
     server: {
@@ -63,7 +64,7 @@ module.exports = cascadeValueFromObjects(configJson, packageChippyJson, packageJ
       open: '.',
       port: 8000
     },
-    source: 'docs',
+    source: 'src',
     templateEngine: 'handlebars',
     transformers: {
       babel: {},
@@ -85,7 +86,7 @@ module.exports = cascadeValueFromObjects(configJson, packageChippyJson, packageJ
   perf: {
     browsers: ['Firefox'],
     files: ['node_modules/benchmark/benchmark.js'],
-    frameworks: ['tape'],
+    frameworks: ['tap'],
     main: 'test/perf.js',
     server: {
       host: '0.0.0.0',
@@ -99,7 +100,7 @@ module.exports = cascadeValueFromObjects(configJson, packageChippyJson, packageJ
   test: {
     browsers: ['Firefox'],
     files: [],
-    frameworks: ['tape'],
+    frameworks: ['tap'],
     main: 'test/perf.js',
     server: {
       host: '0.0.0.0',

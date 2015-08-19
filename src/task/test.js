@@ -32,11 +32,10 @@ if (commander.grep) {
 function run () {
   karma.start({
     autoWatch: !!commander.watch,
-    browserNoActivityTimeout: 1000000,
     singleRun: !commander.watch,
     hostname: commander.host || config('test.server.host'),
     port: commander.port || config('test.server.port'),
-    frameworks: config('test.server.frameworks'),
+    frameworks: config('test.frameworks'),
     browsers: browsers.split(','),
     client: {
       args: clientArgs

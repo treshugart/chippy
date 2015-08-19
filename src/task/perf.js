@@ -36,7 +36,7 @@ function run () {
     singleRun: !commander.watch,
     hostname: commander.host || config('perf.server.host'),
     port: commander.port || config('perf.server.port'),
-    frameworks: config('perf.server.frameworks'),
+    frameworks: config('perf.frameworks'),
     browsers: browsers.split(','),
     client: {
       args: clientArgs

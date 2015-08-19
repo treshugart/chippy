@@ -3,7 +3,7 @@
 var cmd = require('../lib/commander');
 var config = require('../lib/config');
 var del = require('del');
-var galvatron = require('../lib/galvatron')('docs');
+var galvatron = require('../lib/galvatron');
 var gulp = require('gulp');
 var gulpLess = require('gulp-less');
 var gulpWebserver = require('gulp-webserver');
@@ -14,9 +14,13 @@ var metalsmithTemplates = require('metalsmith-templates');
 var metalsmithWatch = require('metalsmith-watch');
 var path = require('path');
 
+var docsSource = path.join(config('docs.basepath'), config('docs.source'));
+var docsDestiniation = path.join(config('docs.basepath'), config('docs.destination'));
+
 module.exports = mac.series(
   function (done) {
-    var ms = metalsmith(config('docs.source'))
+    var ms = metalsmith(config('docs.basepath'))
+      .source(config('docs.source'))
       .destination(config('docs.destination'))
       .use(metalsmithMarkdown({
         sanitize: false
@@ -36,26 +40,27 @@ module.exports = mac.series(
   },
 
   function (done) {
-    del(config('docs.destination'), done);
+    del(path.join(docsDestiniation, config('docs.mainLessDestination'), config('docs.mainLessSource')), done);
   },
 
   function () {
-    var bundle = galvatron.bundle(config('docs.main.less'));
+    var galv = galvatron('docs');
+    var bundle = galv.bundle(path.join(docsSource, config('docs.mainLessDestination'), config('docs.mainLessSource')));
     return gulp
       .src(bundle.files)
       .pipe(bundle.watchIf(cmd.watch))
       .pipe(gulpLess())
-      .pipe(gulp.dest(path.dirname(config('docs.main.less'))));
+      .pipe(gulp.dest(path.join(docsDestiniation, config('docs.mainLessDestination'))));
   },
 
   function () {
-    var galv = galvatron();
-    var bundle = galv.bundle(config('docs.main.js'));
+    var galv = galvatron('docs');
+    var bundle = galv.bundle(path.join(docsSource, config('docs.mainJsDestination'), config('docs.mainJsSource')));
     return gulp
       .src(bundle.files)
       .pipe(bundle.watchIf(cmd.watch))
       .pipe(bundle.stream())
-      .pipe(gulp.dest(path.dirname(config('docs.main.js'))));
+      .pipe(gulp.dest(path.join(docsDestiniation, config('docs.mainJsDestination'))));
   },
 
   function () {
@@ -63,7 +68,7 @@ module.exports = mac.series(
       return;
     }
 
-    return gulp.src(config('docs.destination'))
+    return gulp.src(config('docs.basepath'), config('docs.destination'))
       .pipe(gulpWebserver({
         host: config('docs.server.host'),
         livereload: config('docs.server.livereload'),

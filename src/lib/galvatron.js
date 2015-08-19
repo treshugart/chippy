@@ -9,5 +9,6 @@ module.exports = function (configKey) {
   Object.keys(distTransformers || {}).forEach(function (name) {
     galv.transformer.post(name, distTransformers[name]);
   });
+  galv.reporter.use('progress');
   return galv;
 };

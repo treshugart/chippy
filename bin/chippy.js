@@ -48,11 +48,9 @@ cpDefaultFile('LICENSE');
 cpDefaultFile('README.md');
 mkDefaultDir(config('build'));
 mkDefaultDir(config('docs.basepath'));
-mkDefaultFile(config('dist.source'));
 mkDefaultFile(path.join(config('docs.basepath'), config('docs.source'), config('docs.mainHtmlSource')));
 mkDefaultFile(path.join(config('docs.basepath'), config('docs.source'), config('docs.mainJsDestination'), config('docs.mainJsSource')));
 mkDefaultFile(path.join(config('docs.basepath'), config('docs.source'), config('docs.mainLessDestination'), config('docs.mainLessSource')));
-mkDefaultFile(config('lib.source'));
 mkDefaultFile(config('perf.main'));
 mkDefaultFile(config('test.main'));
 mkDefaultJson('package.json', {

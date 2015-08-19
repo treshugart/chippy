@@ -1,5 +1,3 @@
-'use strict';
-
 var sh = require('shelljs');
 
 module.exports = function () {

@@ -1,5 +1,3 @@
-'use strict';
-
 var docs = require('../docs');
 var mac = require('../../lib/mac');
 var pkg = require('../../lib/package');

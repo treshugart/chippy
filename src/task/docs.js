@@ -1,5 +1,3 @@
-'use strict';
-
 var cmd = require('../lib/commander');
 var del = require('del');
 var galvatron = require('galvatron');

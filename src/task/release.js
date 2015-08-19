@@ -1,5 +1,3 @@
-'use strict';
-
 var cmd = require('commander');
 var pkg = require('../lib/package');
 var replace = require('../lib/replace');

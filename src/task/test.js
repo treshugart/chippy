@@ -1,5 +1,3 @@
-'use strict';
-
 var commander = require('../lib/commander');
 var galvatron = require('galvatron')();
 var gulp = require('gulp');

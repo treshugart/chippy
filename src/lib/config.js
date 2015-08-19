@@ -37,6 +37,7 @@ function cascadeValueFromObjects () {
 var files = cascadeValueFromObjects(configJson, packageChippyJson, packageJson);
 
 module.exports = cascadeValueFromObjects(configJson, packageChippyJson, packageJson, {
+  build: 'build/tasks',
   dist: {
     destination: 'dist',
     minSuffix: '.min',
@@ -50,6 +51,7 @@ module.exports = cascadeValueFromObjects(configJson, packageChippyJson, packageJ
   docs: {
     destination: 'docs/build',
     main: {
+      html: 'docs/src/index.html',
       js: 'docs/src/scripts/index.js',
       less: 'docs/src/styles/index.less'
     },
@@ -81,7 +83,7 @@ module.exports = cascadeValueFromObjects(configJson, packageChippyJson, packageJ
     paths: ['build', 'src', 'test']
   },
   perf: {
-    browser: ['Firefox'],
+    browsers: ['Firefox'],
     files: ['node_modules/benchmark/benchmark.js'],
     frameworks: ['tape'],
     main: 'test/perf.js',
@@ -95,7 +97,7 @@ module.exports = cascadeValueFromObjects(configJson, packageChippyJson, packageJ
     }
   },
   test: {
-    browser: ['Firefox'],
+    browsers: ['Firefox'],
     files: [],
     frameworks: ['tape'],
     main: 'test/perf.js',

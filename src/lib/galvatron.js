@@ -1,11 +1,13 @@
 'use strict';
 
-var config = require('config');
-var galvatron = require('galvatron')();
+var config = require('./config');
+var galvatron = require('galvatron');
 
 module.exports = function (configKey) {
+  var galv = galvatron();
   var distTransformers = config(configKey + '.transformers');
   Object.keys(distTransformers || {}).forEach(function (name) {
-    galvatron.transformer.post(name, distTransformers[name]);
+    galv.transformer.post(name, distTransformers[name]);
   });
+  return galv;
 };

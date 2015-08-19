@@ -7,7 +7,7 @@ var galvatron = require('../lib/galvatron')('dist');
 var gulp = require('gulp');
 var gulpRename = require('gulp-rename');
 var gulpUglify = require('gulp-uglify');
-var mac = require('../lib/mac');
+var mac = require('mac');
 
 module.exports = mac.series(
   function (done) {

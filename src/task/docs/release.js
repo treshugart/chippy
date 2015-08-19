@@ -2,7 +2,7 @@
 
 var config = require('../../lib/config');
 var docs = require('../docs');
-var mac = require('../../lib/mac');
+var mac = require('mac');
 var sh = require('shelljs');
 
 var docsReleaseMessage = config('docs.releaseMessage');

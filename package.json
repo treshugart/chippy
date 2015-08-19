@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Module that encapsulates most of the abstract logic and tasks that a JavaScript project / app will need.",
   "main": "index.js",
+  "bin": {
+    "chippy": "bin/chippy.js"
+  },
   "scripts": {
     "test": "node_modules/.bin/tape test/**/*.js"
   },
@@ -20,7 +23,7 @@
     "benchmark": "^1.0.0",
     "commander": "^2.5.0",
     "del": "^1.1.1",
-    "galvatron": "0.8.0",
+    "galvatron": "treshugart/galvatron#26d59a72b35a06fc9222e8de0e11835838c2206f",
     "glob": "^5.0.14",
     "gulp": "^3.8.11",
     "gulp-less": "^3.0.1",
@@ -48,5 +51,8 @@
   },
   "devDependencies": {
     "tape": "^4.2.0"
+  },
+  "peerDependencies": {
+    "gulp-auto-task": "*"
   }
 }

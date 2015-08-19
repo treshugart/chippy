@@ -5,7 +5,7 @@ var config = require('../lib/config');
 var galvatron = require('galvatron')('perf');
 var gulp = require('gulp');
 var karma = require('karma').server;
-var mac = require('../lib/mac');
+var mac = require('mac');
 var path = require('path');
 
 commander

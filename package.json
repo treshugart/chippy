@@ -30,7 +30,6 @@
     "glob": "^5.0.14",
     "gulp": "^3.8.11",
     "gulp-less": "^3.0.1",
-    "gulp-rename": "^1.2.0",
     "gulp-uglify": "^1.1.0",
     "gulp-watch": "^4.3.5",
     "gulp-watch-less": "treshugart/gulp-watch-less#b647b49",

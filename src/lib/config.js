@@ -39,13 +39,22 @@ var files = cascadeValueFromObjects(configJson, packageChippyJson, packageJson);
 module.exports = cascadeValueFromObjects(configJson, packageChippyJson, packageJson, {
   build: 'build/tasks',
   dist: {
-    destination: 'dist',
-    minSuffix: '.min',
-    name: files('name') || path.basename(cwd),
-    source: files('main') || 'src/index.js',
-    transformers: {
-      babel: {},
-      globalize: {}
+    js: {
+      destination: 'dist',
+      minSuffix: '.min',
+      name: files('name') || path.basename(cwd),
+      source: files('main') || 'src/index.js',
+      transformers: {
+        babel: {},
+        globalize: {}
+      }
+    },
+    less: {
+      destination: 'dist',
+      minSuffix: '.min',
+      name: files('name') || path.basename(cwd),
+      source: files('main') || 'src/index.js',
+      transformers: {}
     }
   },
   docs: {

@@ -25,8 +25,8 @@ function mkDefaultFile (file, data) {
   }
 }
 
-function cpDefaultFile (file) {
-  mkDefaultFile(file, fs.readFileSync(scaffoldPath(file)));
+function cpDefaultFile (file, dest) {
+  mkDefaultFile(dest || file, fs.readFileSync(scaffoldPath(file)));
 }
 
 function mkDefaultJson (file, obj) {
@@ -39,10 +39,10 @@ function npmInstallDev (pkg) {
   }
 }
 
-cpDefaultFile('.chippyrc');
-cpDefaultFile('.gitignore');
-cpDefaultFile('.jshintrc');
-cpDefaultFile('.jscsrc');
+cpDefaultFile('dot-chippyrc', '.chippyrc');
+cpDefaultFile('dot-gitignore', '.gitignore');
+cpDefaultFile('dot-jshintrc', '.jshintrc');
+cpDefaultFile('dot-jscsrc', '.jscsrc');
 cpDefaultFile('gulpfile.js');
 cpDefaultFile('LICENSE');
 cpDefaultFile('README.md');

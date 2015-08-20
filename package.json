@@ -26,7 +26,7 @@
     "benchmark": "^1.0.0",
     "commander": "^2.5.0",
     "del": "^1.1.1",
-    "galvatron": "github:treshugart/galvatron#c6739f4fdeddb727aed402d2a4ed27a491439036",
+    "galvatron": "github:treshugart/galvatron#17e9210",
     "glob": "^5.0.14",
     "gulp": "^3.8.11",
     "gulp-if": "^1.2.5",

@@ -42,7 +42,6 @@ module.exports = cascadeValueFromObjects(configJson, packageChippyJson, packageJ
     js: {
       destination: 'dist',
       minSuffix: '.min',
-      name: files('name') || path.basename(cwd),
       source: files('main') || 'src/index.js',
       transformers: {
         babel: {},
@@ -52,7 +51,6 @@ module.exports = cascadeValueFromObjects(configJson, packageChippyJson, packageJ
     less: {
       destination: 'dist',
       minSuffix: '.min',
-      name: files('name') || path.basename(cwd),
       source: files('main') || 'src/index.js',
       transformers: {}
     }

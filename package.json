@@ -7,13 +7,16 @@
     "chippy": "bin/chippy.js"
   },
   "scripts": {
-    "test": "node_modules/.bin/tape test/**/*.js"
+    "test": "tape test/**/*.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/treshugart/chippy"
+    "url": "git+https://github.com/treshugart/chippy.git"
   },
-  "author": "Trey Shugart <treshugart@gmail.com>",
+  "author": {
+    "name": "Trey Shugart",
+    "email": "treshugart@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/treshugart/chippy/issues"
@@ -23,13 +26,14 @@
     "benchmark": "^1.0.0",
     "commander": "^2.5.0",
     "del": "^1.1.1",
-    "galvatron": "treshugart/galvatron#c6739f4fdeddb727aed402d2a4ed27a491439036",
+    "galvatron": "github:treshugart/galvatron#c6739f4fdeddb727aed402d2a4ed27a491439036",
     "glob": "^5.0.14",
     "gulp": "^3.8.11",
     "gulp-less": "^3.0.1",
     "gulp-rename": "^1.2.0",
     "gulp-uglify": "^1.1.0",
     "gulp-watch": "^4.3.5",
+    "gulp-watch-less": "treshugart/gulp-watch-less#b647b49",
     "gulp-webserver": "^0.9.0",
     "handlebars": "^2.0.0",
     "jscs": "^1.11.3",
@@ -53,5 +57,12 @@
   },
   "peerDependencies": {
     "gulp-auto-task": "*"
-  }
+  },
+  "gitHead": "429c5bfa9453f9555dc3e22a21118c9d475cffca",
+  "readme": "# chippy\nModule that encapsulates most of the abstract logic and tasks that a JavaScript project / app will need.\n",
+  "readmeFilename": "README.md",
+  "_id": "chippy@0.1.0",
+  "_shasum": "5f032bd9512240c833f6b5b7129ba7f831f28c90",
+  "_from": "treshugart/chippy#429c5bfa9453f9555dc3e22a21118c9d475cffca",
+  "_resolved": "git://github.com/treshugart/chippy.git#429c5bfa9453f9555dc3e22a21118c9d475cffca"
 }

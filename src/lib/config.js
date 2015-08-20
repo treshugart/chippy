@@ -101,7 +101,7 @@ module.exports = cascadeValueFromObjects(configJson, packageChippyJson, packageJ
     browsers: ['Firefox'],
     files: [],
     frameworks: ['tap'],
-    main: 'test/perf.js',
+    main: 'test/unit.js',
     server: {
       host: '0.0.0.0',
       port: 9876

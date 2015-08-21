@@ -54,7 +54,6 @@
         "--"
     ],
     "disallowSpacesInsideArrayBrackets": true,
-    "disallowSpacesInsideObjectBrackets": true,
     "disallowSpacesInsideParentheses": true,
     "requireBlocksOnNewline": true,
     "requireCapitalizedConstructors": true,

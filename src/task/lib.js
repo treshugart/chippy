@@ -3,14 +3,14 @@
 var commander = require('../lib/commander');
 var config = require('../lib/config');
 var del = require('del');
-var galvatron = require('galvatron')('lib');
+var galvatron = require('../lib/galvatron')('lib.js');
 var gulp = require('gulp');
 var mac = require('mac');
 var path = require('path');
 
 var cwd = process.cwd();
-var src = path.join(cwd, path.dirname(config('lib.source')));
-var lib = path.join(cwd, config('lib.destination'));
+var src = path.join(cwd, path.dirname(config('lib.js.source')));
+var lib = path.join(cwd, config('lib.js.destination'));
 
 module.exports = mac.series(
   function (done) {
@@ -18,11 +18,11 @@ module.exports = mac.series(
   },
 
   function () {
-    var bundle = galvatron.bundle(config('lib.source'));
+    var bundle = galvatron.bundle(config('lib.js.source'));
 
     bundle.all.forEach(function (file) {
       var srcFile = path.relative(src, file);
-      var destFile = path.join(config('lib.destination'), srcFile);
+      var destFile = path.join(config('lib.js.destination'), srcFile);
       var destDir = path.dirname(destFile);
 
       gulp

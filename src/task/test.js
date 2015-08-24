@@ -2,7 +2,7 @@
 
 var commander = require('../lib/commander');
 var config = require('../lib/config');
-var galvatron = require('galvatron')('perf');
+var galvatron = require('galvatron')('test');
 var gulp = require('gulp');
 var karma = require('karma').server;
 var mac = require('mac');

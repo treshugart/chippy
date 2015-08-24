@@ -51,7 +51,7 @@ module.exports = cascadeValueFromObjects(configJson, packageChippyJson, packageJ
     less: {
       destination: 'dist',
       minSuffix: '.min',
-      source: files('main') || 'src/index.js',
+      source: files('main') || 'src/index.less',
       transformers: {}
     }
   },

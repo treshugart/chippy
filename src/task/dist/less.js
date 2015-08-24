@@ -16,7 +16,7 @@ module.exports = mac.mac({
     var dest = config('dist.less.destination');
     var src = config('dist.less.source');
     return gulp.src(src)
-      .pipe(gulpIf(commander.watch, gulpWatchLess(src)))
+      .pipe(gulpIf(!!commander.watch, gulpWatchLess.bind(null, src)))
       .pipe(gulpLess({
         paths: [
           path.basename(src)
